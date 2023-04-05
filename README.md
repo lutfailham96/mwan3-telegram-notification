@@ -8,7 +8,7 @@ Always stay up to date with your mwan3 status using Telegram
 
 ### Installing
 ```shell
-bash install.sh
+sh -c "$(curl -sLlo - https://raw.githubusercontent.com/lutfailham96/mwan3-telegram-notification/main/install.sh)"
 ```
 
 ### How to create Telegram bot
@@ -21,14 +21,38 @@ username  : my_awesome_openwrt_bot
 bot token : 61102xxxxx:AAHnmbXKLisxejOBBVVxxxxxxxxxxxx
 ```
 Send message to group and mention your bot, ex: `/my_id @my_awesome_openwrt_bot`<br>
-
+Get update your bot by visiting url like this
+```json
+{
+    "ok": true,
+    "result": [
+        {
+            ...
+            "message": {
+                "from": {
+                    ...
+                    "username": "lutfailham"
+                },
+                "chat": {
+                    "id": -9271xxxxx, // This is group chat id
+                    "type": "group"
+                    ...
+                },
+                "text": "/my_id @my_awesome_openwrt_bot",
+                ...
+            }
+        }
+    ]
+}
+```
+as we can see, retrieved group chat id is `-9271xxxxx`
 
 
 ### Configure notification
-Configuration file are located on `/root/bin/telegram.sh`<br>
+Configuration file are located on `/root/bin/telegram.sh`, you edit the file using `nano` or `vi`<br>
 Example configuration:
-```
+```bash
 TELEGRAM_BOT_TOKEN="61102xxxxx:AAHnmbXKLisxejOBBVVxxxxxxxxxxxx"
 TELEGRAM_CHAT_ID="-9271xxxxx"
-TELEGRAM_PIC_MENTION="@lutfailham"
+TELEGRAM_PIC_MENTION="@lutfailham"      # This field is optional, for user mention purpose only
 ```
